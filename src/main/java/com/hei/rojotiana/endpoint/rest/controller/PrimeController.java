@@ -11,17 +11,18 @@ public class PrimeController {
     DummyRepository dummyRepository;
     DummyUuidRepository dummyUuidRepository;
     EventProducer eventProducer;
-
-    Random random = new Random();
-    int randomNumber = random.nextInt(100) + 1;
+    public static int generateRandomNumber(){
+        Random random = new Random();
+        return random.nextInt(100) + 1;
+    }
 
     @GetMapping("/prime")
     public boolean isPrime() {
-        if (randomNumber <= 1) {
+        if (generateRandomNumber() <= 1) {
             return false;
         }
-        for (int i = 2; i <= Math.sqrt(randomNumber); i++) {
-            if (randomNumber % i == 0) {
+        for (int i = 2; i <= Math.sqrt(generateRandomNumber()); i++) {
+            if (generateRandomNumber() % i == 0) {
                 return false;
             }
         }
